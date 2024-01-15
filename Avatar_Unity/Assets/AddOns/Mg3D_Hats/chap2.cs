@@ -4,6 +4,8 @@ public class ToggleChapeau : MonoBehaviour
 {
     public GameObject Hat1; // R�f�rence � l'objet � activer/d�sactiver
     public GameObject Hat2;
+
+    public Animator Girl_Controller;
     public static int M=0;
 
     
