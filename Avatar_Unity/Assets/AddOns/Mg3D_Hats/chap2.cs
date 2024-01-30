@@ -7,6 +7,10 @@ public class ToggleChapeau : MonoBehaviour
 
     public Animator Girl_Controller;
     public static int M=0;
+    void Start()
+    {
+        Girl_Controller = GetComponent<Animator>();
+    }
 
     
     // Fonction pour activer/d�sactiver l'objet
@@ -22,5 +26,9 @@ public class ToggleChapeau : MonoBehaviour
         }
         
         M++;
+    }
+
+    public void launchAnim(){
+       Girl_Controller.SetTrigger("BeginAnimation");
     }
 }

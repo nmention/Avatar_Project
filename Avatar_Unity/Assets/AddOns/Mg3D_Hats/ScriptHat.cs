@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ToggleObject : MonoBehaviour
 {
-    public GameObject Hat; // Référence à l'objet à activer/désactiver
+    public GameObject Hat; // Rï¿½fï¿½rence ï¿½ l'objet ï¿½ activer/dï¿½sactiver
 
-    // Fonction pour activer/désactiver l'objet
+    // Fonction pour activer/dï¿½sactiver l'objet
     public void APPARITITIITIT()
     {
         if (Hat != null)
