@@ -16,7 +16,7 @@ public class Animations : MonoBehaviour
     {
         if (animator != null)
         {
-            print("animator");
+            
             if (Input.GetKeyDown(KeyCode.O))
             {
                 animator.SetTrigger("BeginAnimation");
