@@ -22,7 +22,7 @@ public class ImportModel : MonoBehaviour
     {
         
         GameObject personnage = GameObject.Find("girl_nonPBR");
-        Transform head = personnage.transform.Find("HeadTop_End");
+        Transform head = personnage.transform.Find("mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End");
         int modelCount = models.Length;
         if (M < modelCount-1)
         {
