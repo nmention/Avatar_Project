@@ -8,21 +8,25 @@ public class ImportModel : MonoBehaviour
     public static int M = -1;
     Object[] models = null;
     GameObject previousHat = null;
+    GameObject othersHat = null;
+    GameObject personnage = null;
+    Transform head=null;
 
     void Start()
     {
         print("start");
         // Charger tous les objets du dossier spécifié
         models = Resources.LoadAll(folderPath, typeof(GameObject));
-
+        personnage = GameObject.Find("girl_nonPBR");
+        head = personnage.transform.Find("mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End");
         // Instancier chaque modèle dans la scène
     }
 
     public void EVOLVE()
     {
         
-        GameObject personnage = GameObject.Find("girl_nonPBR");
-        Transform head = personnage.transform.Find("mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End");
+        
+        
         int modelCount = models.Length;
         if (M < modelCount-1)
         {
@@ -63,4 +67,31 @@ public class ImportModel : MonoBehaviour
             }
         }
     }
+    public void display(string s)
+    {
+        int i;
+        bool ch = false;
+        print("x3");
+        for (i=0; i < models.Length; i++)
+        {
+            print("x4");
+            if (models[i].name == s)
+            {
+                
+                ch = true;
+                print("x5");
+                break;
+            }
+        }
+        if (ch) {
+            print("x6");
+            othersHat = Instantiate(models[i]) as GameObject;
+            othersHat.transform.SetParent(head);
+            othersHat.transform.localPosition = Vector3.zero;
+            othersHat.transform.localRotation = Quaternion.identity;
+
+        }
+        
+    }
+
 }
