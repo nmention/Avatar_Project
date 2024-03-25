@@ -8,10 +8,13 @@ public class UIManager : MonoBehaviour
     public string folderPath = "Models"; // Chemin du dossier contenant les modèles
     public GameObject modelPrefab; // Préfab pour représenter chaque modèle
     public Transform panel; // Panneau UI pour contenir les carrés vides
+    public Transform panel2; // Panneau UI pour contenir les carrés vides
     public Load Imp;
+    GameObject buttonObject;
     void Start()
     {
         LoadModels();
+        LoadPannel();
     }
 
     void LoadModels()
@@ -27,11 +30,7 @@ public class UIManager : MonoBehaviour
             if (model != null)
             {
                 // Créez un bouton pour représenter le modèle
-                GameObject buttonObject = Instantiate(modelPrefab, panel); // cree le bouton
-                
-
-                // Assuming your button contains a TextMeshPro component
-                //TextMeshProUGUI textMeshPro = childTransform.GetComponent<TextMeshProUGUI>();
+                buttonObject = Instantiate(modelPrefab, panel); // cree le bouton
                 buttonObject.GetComponentInChildren<TextMeshProUGUI> ().text = Path.GetFileNameWithoutExtension(path);
 
                 buttonObject.GetComponent<Button>().onClick.AddListener(() => ImportModel(model));
@@ -41,6 +40,10 @@ public class UIManager : MonoBehaviour
                 Debug.LogWarning("Impossible de charger le modèle : " + Path.GetFileNameWithoutExtension(path));
             }
         }
+        buttonObject = Instantiate(modelPrefab, panel); // cree le bouton
+        buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = "vide";
+        Load x = new Load();
+        buttonObject.GetComponent<Button>().onClick.AddListener(() => Load.ClearOld());
     }
 
     void ImportModel(GameObject model)
@@ -57,5 +60,12 @@ public class UIManager : MonoBehaviour
         Imp.Display(model.name);
         print("x2");
         //Instantiate(model, Vector3.zero, Quaternion.identity);
+    }
+
+    void LoadPannel()
+    {
+        //string folderNames = Resources.Load<string>(folderPath + "/" + Path.GetFileNameWithoutExtension("")); // take ressources files name 
+
+
     }
 }

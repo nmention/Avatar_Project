@@ -35,5 +35,8 @@ public class HUDManager : MonoBehaviour
                 Debug.LogWarning("Impossible de charger le prefab : " + fileName);
             }
         }
+        GameObject hud2 = Instantiate(hudElementPrefab, contentPanel);
+        hud2.GetComponentInChildren<Text>().text = "vide";
+
     }
 }

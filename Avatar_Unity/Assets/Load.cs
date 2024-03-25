@@ -1,9 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class Load
 {
     // Chemin vers le dossier contenant les modèles FBX dans le dossier Resources
     public string folderPath = "Models";
-    GameObject previousHat = null;
+    static GameObject previousHat = null;
     void Start()
     {
         
@@ -29,13 +30,23 @@ public class Load
         }
         if (ch)
         {
-            previousHat = GameObject.Instantiate(models[i]) as GameObject;
-            previousHat.transform.SetParent(head);
-            previousHat.transform.localPosition = Vector3.zero;
-            previousHat.transform.localRotation = Quaternion.identity;
+            if (models[i]!=previousHat) {
+
+                previousHat = GameObject.Instantiate(models[i]) as GameObject;
+                previousHat.transform.SetParent(head);
+                previousHat.transform.localPosition = Vector3.zero;
+                previousHat.transform.localRotation = Quaternion.identity;
+            }          
 
         }
 
+    }
+    public static void ClearOld()
+    {
+        if (previousHat != null)
+        {
+            GameObject.Destroy(previousHat);
+        }
     }
    
 
