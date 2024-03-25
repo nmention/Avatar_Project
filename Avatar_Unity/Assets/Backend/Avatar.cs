@@ -1,57 +1,54 @@
+
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Palmmedia.ReportGenerator.Core.Common;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Avatar : MonoBehaviour
-{
-
-
-    
-    public string Name
+namespace Data
+{   
+    [Serializable]
+     public class CustomAvatar
     {
-        get; set;
-    }
-    public DateTime LastModification
-    {
-        get; set;
-    }
+        public DateTimeOffset date;
 
-    public string Hat
-    {
-        get; set;
-    }
-
-
-    public void saveAvatarAsJson(string pathname)
-    {
-        print("yes");
-        print(this.Name);
-        print("yes");
-       
-        string save = JsonSerializer.ToJsonString(this);
-        print(save);
-
-    }
-
-
-
-
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        Avatar avatar = new Avatar();
-        avatar.Name = "test";
-        avatar.Hat = "casquette";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        public String avatarPath;
         
-    }
+        public List<String> accessoriesPathList;
 
+        public List<GameObject> accessoriesList;
+
+
+
+        public CustomAvatar()
+
+        {
+            accessoriesList = new List<GameObject>();
+            accessoriesPathList = new List<string>();
+            avatarPath = "";
+            
+            date = DateTimeOffset.UtcNow;
+        }
+
+        public void addAccessories(GameObject accessory, String pathname)
+        {
+            accessoriesList.Add(accessory);
+            accessoriesPathList.Add(pathname);
+            
+        }
+
+        public int getNbAccessories()
+        {
+            return accessoriesPathList.Count;
+        }
+
+        public string getJson()
+        {
+            string json = JsonUtility.ToJson(this);
+            return json;
+
+        }
+
+
+
+    }
 }

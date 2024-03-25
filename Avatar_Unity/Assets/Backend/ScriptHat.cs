@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class ToggleObject : MonoBehaviour
 {
     public GameObject Hat; // R�f�rence � l'objet � activer/d�sactiver
