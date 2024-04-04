@@ -148,7 +148,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41320946}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3ebc094fda6e2a4095a5bc7d3ca2486, type: 3}
   m_Name: 
@@ -312,10 +312,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 661946407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.70400006, y: 1}
-  m_AnchoredPosition: {x: 708, y: 199}
-  m_SizeDelta: {x: 146, y: -1}
+  m_AnchorMin: {x: 0.537, y: 0.57474405}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 10, y: -27}
+  m_SizeDelta: {x: 493, y: 391}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &112305973
 MonoBehaviour:
@@ -574,6 +574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433300526}
   - component: {fileID: 433300527}
+  - component: {fileID: 433300529}
   m_Layer: 0
   m_Name: Contain
   m_TagString: Untagged
@@ -613,6 +614,22 @@ MonoBehaviour:
   modelPrefab: {fileID: 7692183646002071161, guid: def111bfac7ed964eacda5277be0ce67, type: 3}
   panel: {fileID: 112305972}
   panel2: {fileID: 0}
+--- !u!114 &433300529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433300525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4a105d45da31548b5788acedfbf1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationsFolderPath: Animations
+  animationButtonPrefab: {fileID: 7487594385380614800, guid: ddf5ee18932a13d4b965f198d63676f2, type: 3}
+  panel: {fileID: 524445853}
+  characterAnimator: {fileID: 41320953}
 --- !u!1 &457807869
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,8 +639,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 457807872}
-  - component: {fileID: 457807871}
-  - component: {fileID: 457807870}
   m_Layer: 0
   m_Name: Save Json
   m_TagString: Untagged
@@ -631,31 +646,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &457807870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457807869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2411960bce670c4aa6a95b5574edd5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &457807871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457807869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e127bd5cd825f6c4292b3eca3a542439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetObject: {fileID: 41320946}
 --- !u!4 &457807872
 Transform:
   m_ObjectHideFlags: 0
@@ -825,8 +815,7 @@ GameObject:
   - component: {fileID: 524445853}
   - component: {fileID: 524445855}
   - component: {fileID: 524445854}
-  - component: {fileID: 524445857}
-  - component: {fileID: 524445856}
+  - component: {fileID: 524445858}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -843,14 +832,14 @@ RectTransform:
   m_GameObject: {fileID: 524445852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.358735, y: 0.363175, z: 1}
+  m_LocalScale: {x: 0.9765344, y: 0.8503743, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 661946407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 654, y: -364}
+  m_AnchorMin: {x: 0.6441376, y: 0}
+  m_AnchorMax: {x: 1, y: 0.34300002}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &524445854
@@ -891,23 +880,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524445852}
   m_CullTransparentMesh: 1
---- !u!114 &524445856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524445852}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79a766a4c6b7d6f4db8e2f154dea403c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  folderPath: Models
-  modelPrefab: {fileID: 0}
-  panel: {fileID: 0}
-  panel2: {fileID: 0}
---- !u!114 &524445857
+--- !u!114 &524445858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -916,13 +889,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 524445852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79a766a4c6b7d6f4db8e2f154dea403c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  folderPath: Models
-  modelPrefab: {fileID: 0}
-  panel: {fileID: 0}
-  panel2: {fileID: 0}
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 150, y: 150}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &538748907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1601,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 7cb329dd6faeb324c9a7edc9e1939b71, type: 2}
     - target: {fileID: 5866666021909216657, guid: d1f2c61d59ee7e04a93fe56d376c6d36, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: d1f2c61d59ee7e04a93fe56d376c6d36, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -2066,7 +2051,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 457807870}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Exce, Assembly-CSharp
         m_MethodName: doo
         m_Mode: 1
