@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class Load
 {
-    // Chemin vers le dossier contenant les modèles FBX dans le dossier Resources
+    // Chemin vers le dossier contenant les modï¿½les FBX dans le dossier Resources
     public string folderPath = "Models";
     static GameObject previousHat = null;
     void Start()
@@ -16,6 +16,7 @@ public class Load
         Transform head = personnage.transform.Find("mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End");
         int i;
         bool ch = false;
+        
         if (previousHat!= null) { 
         GameObject.Destroy(previousHat);
         }

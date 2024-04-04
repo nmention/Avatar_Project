@@ -26,9 +26,11 @@ public class Save : MonoBehaviour
         
     }
 
-    public static void writeJson(string json)
+    public static void writeJson(string filename, string json)
     {
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/" + filename,json);
         
+
     }
 
 
