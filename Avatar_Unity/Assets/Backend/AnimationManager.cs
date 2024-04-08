@@ -1,32 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using System.IO;
+using UnityEditor.Animations;
 
-public class animationManager : MonoBehaviour
+public class AnimationManager : MonoBehaviour
 {
-    public string animationsFolderPath= "Animations"; // Chemin du dossier contenant les animations FBX
+    public string animationsFolderPath = "Animations"; // Chemin du dossier contenant les animations .anim
     public GameObject animationButtonPrefab; // Préfab pour représenter chaque animation dans le panneau
     public Transform panel; // Panneau UI pour contenir les animations
     public Animator characterAnimator; // Animator du personnage dans la scène
-
-
     void Start()
     {
+
         LoadAnimations();
     }
 
     void LoadAnimations()
     {
-        // Charge toutes les ressources (animations) dans le dossier spécifié
-        Object[] animationObjects = Resources.LoadAll(animationsFolderPath, typeof(GameObject));
+        // Récupère la liste des fichiers .anim dans le dossier spécifié
+        string[] animationFiles = Directory.GetFiles(Application.dataPath + "/" + animationsFolderPath, "*.anim");
 
-        // Parcourt toutes les animations chargées
-        foreach (Object obj in animationObjects)
+        // Parcourt tous les fichiers .anim trouvés
+        foreach (string file in animationFiles)
         {
-            GameObject animationPrefab = (GameObject)obj;
-
-            // Récupère le nom de l'animation à partir du nom du GameObject
-            string animationName = animationPrefab.name;
+            // Récupère le nom du fichier sans extension
+            string animationName = Path.GetFileNameWithoutExtension(file);
 
             // Crée un bouton pour représenter l'animation
             GameObject animationButton = Instantiate(animationButtonPrefab, panel);
@@ -36,11 +34,10 @@ public class animationManager : MonoBehaviour
             animationButton.GetComponent<Button>().onClick.AddListener(() => PlayAnimation(animationName));
         }
     }
-
     void PlayAnimation(string animationName)
     {
-        // Met à jour l'animation de l'Animator du personnage avec l'animation correspondant au nom du bouton
-        Debug.Log("Playing animation: " + animationName);
-        characterAnimator.Play(animationName);
+
+        characterAnimator.Play(animationName,0);
     }
 }
+
