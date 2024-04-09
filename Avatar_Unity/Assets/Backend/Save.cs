@@ -1,13 +1,19 @@
 using UnityEngine;
-using Autodesk.Fbx;
+
 using System.IO;
+using TMPro;
+using UnityEngine.UI;
+using Data;
+
+
+
 
 
 
 public class Save : MonoBehaviour
 {
     // Start is called before the first frame update
-    
+   public Button saveBt;
 
     
    
@@ -16,7 +22,8 @@ public class Save : MonoBehaviour
     
     void Start()
     {
-        
+        saveBt = GetComponent<Button>();
+        //
      
     }
 
@@ -26,10 +33,36 @@ public class Save : MonoBehaviour
         
     }
 
-    public static void writeJson(string filename, string json)
+    public static void writeJson(string filename, CustomAvatar customAvatar)
     {
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/" + filename,json);
+        foreach (var item in customAvatar.accessoriesPathList)
+        {
+            print(item);
+        }
+        print(customAvatar.date);
+        string json = customAvatar.getJson();
+        Debug.Log("json object :");
+        Debug.Log(json);
+        string filePath = Path.Combine(Application.persistentDataPath,filename);
+         try
+        {
+            // Write the JSON string to the file
+            Debug.Log(Application.persistentDataPath);
+            File.WriteAllText(filePath, json);
+            Debug.Log("JSON file written successfully.");
+        }
+        catch (IOException e)
+        {
+            Debug.LogError("Error writing JSON file: " + e.Message);
+        }
         
+        
+
+
+    }
+
+    public void doSomething()
+    {
 
     }
 
@@ -37,6 +70,11 @@ public class Save : MonoBehaviour
     public static string readJson(string pathname)
     {
         return "";
+    }
+
+    public void setListener()
+    {
+        saveBt.onClick.AddListener(delegate{writeJson("save.json",UIManager.customAvatar);});
     }
 
    
