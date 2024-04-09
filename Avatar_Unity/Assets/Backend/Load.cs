@@ -1,13 +1,22 @@
+ï»¿using System.IO;
+using Data;
 using Unity.VisualScripting;
 using UnityEngine;
-public class Load
+using UnityEngine.UI;
+public class Load : MonoBehaviour
 {
-    // Chemin vers le dossier contenant les modèles FBX dans le dossier Resources
+    // Chemin vers le dossier contenant les modï¿½les FBX dans le dossier Resources
     public string folderPath = "Models";
     static GameObject previousHat = null;
+
+    public Button LoadBt;
+
+
+    public Button CancelBt;
     void Start()
     {
-        
+        LoadBt.GetComponent<Button>();
+        CancelBt.GetComponent<Button>();
     }
     public void Display(string s)
     {
@@ -16,8 +25,10 @@ public class Load
         Transform head = personnage.transform.Find("mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End");
         int i;
         bool ch = false;
-        if (previousHat!= null) { 
-        GameObject.Destroy(previousHat);
+
+        if (previousHat != null)
+        {
+            GameObject.Destroy(previousHat);
         }
         for (i = 0; i < models.Length; i++)
         {
@@ -30,13 +41,14 @@ public class Load
         }
         if (ch)
         {
-            if (models[i]!=previousHat) {
+            if (models[i] != previousHat)
+            {
 
                 previousHat = GameObject.Instantiate(models[i]) as GameObject;
                 previousHat.transform.SetParent(head);
                 previousHat.transform.localPosition = Vector3.zero;
                 previousHat.transform.localRotation = Quaternion.identity;
-            }          
+            }
 
         }
 
@@ -48,6 +60,61 @@ public class Load
             GameObject.Destroy(previousHat);
         }
     }
-   
+
+
+    public CustomAvatar GetLoadFromSave(string filename)
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, filename);
+        CustomAvatar savedAvatar = null;
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            savedAvatar = JsonUtility.FromJson<CustomAvatar>(json);
+
+        }
+        return savedAvatar;
+    }
+
+    public void LoadFromSave(string filepath)
+    {
+        CustomAvatar loadedAvatar;
+        loadedAvatar = GetLoadFromSave(filepath);
+        DisplayLastSavedAccessories(loadedAvatar);
+        System.Diagnostics.Process.Start(Application.persistentDataPath);
+    }
+
+
+    public void DisplayLastSavedAccessories(CustomAvatar savedAvatar)
+    {
+        Debug.Log("Yes");
+        Display(savedAvatar.getLastAccessory());
+    }
+
+
+    public void setListener()
+    {
+        LoadBt.onClick.AddListener(delegate { LoadFromSave("save.json"); });
+    }
+
+
+    public void cancel(CustomAvatar currentAvatar)
+    {
+        if (currentAvatar.accessoriesPathList.Count > 1)
+        {
+            currentAvatar.deleteLastAccessory();
+            DisplayLastSavedAccessories(currentAvatar);
+        }
+        else
+        {
+            ClearOld();
+        }
+    }
+
+
+    public void setCancelListener(CustomAvatar currentAvatar)
+    {
+        CancelBt.onClick.AddListener(delegate { cancel(currentAvatar); });
+    }
+
 
 }

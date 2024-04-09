@@ -1,65 +1,90 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using Data;
 
 public class UIManager : MonoBehaviour
 {
-    public string folderPath = "Models"; // Chemin du dossier contenant les modèles
-    public GameObject modelPrefab; // Préfab pour représenter chaque modèle
-    public Transform panel; // Panneau UI pour contenir les carrés vides
-    public Transform panel2; // Panneau UI pour contenir les carrés vides
+    public string folderPath = "Models"; // Chemin du dossier contenant les modï¿½les
+    public GameObject modelPrefab; // Prï¿½fab pour reprï¿½senter chaque modï¿½le
+    public Transform panel; // Panneau UI pour contenir les carrï¿½s vides
+    public Transform panel2; // Panneau UI pour contenir les carrï¿½s vides
     public Load Imp;
+
+
+
+
+    public Save save;
+
+
+
+    public static CustomAvatar customAvatar;
     GameObject buttonObject;
     void Start()
     {
+        //Button saveBt = save.saveBt;
         LoadModels();
         LoadPannel();
+
     }
 
     void LoadModels()
     {
-        // Obtenez les chemins de tous les fichiers FBX dans le dossier spécifié
+        // Obtenez les chemins de tous les fichiers FBX dans le dossier spï¿½cifiï¿½
         string[] modelPaths = Directory.GetFiles(Application.dataPath + "/Resources/" + folderPath, "*.fbx");
         // print(modelPaths[0]); check path
         foreach (string path in modelPaths)
         {
-            // Charger le modèle depuis le chemin du fichier
+            // Charger le modï¿½le depuis le chemin du fichier
             GameObject model = Resources.Load<GameObject>(folderPath + "/" + Path.GetFileNameWithoutExtension(path));
             // print(model); check model
             if (model != null)
             {
-                // Créez un bouton pour représenter le modèle
+                // Crï¿½ez un bouton pour reprï¿½senter le modï¿½le
                 buttonObject = Instantiate(modelPrefab, panel); // cree le bouton
-                buttonObject.GetComponentInChildren<TextMeshProUGUI> ().text = Path.GetFileNameWithoutExtension(path);
+                buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = Path.GetFileNameWithoutExtension(path);
 
                 buttonObject.GetComponent<Button>().onClick.AddListener(() => ImportModel(model));
             }
             else
             {
-                Debug.LogWarning("Impossible de charger le modèle : " + Path.GetFileNameWithoutExtension(path));
+                Debug.LogWarning("Impossible de charger le modï¿½le : " + Path.GetFileNameWithoutExtension(path));
             }
         }
         buttonObject = Instantiate(modelPrefab, panel); // cree le bouton
         buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = "vide";
-        Load x = new Load();
+        //Load x = new Load();
+
+        customAvatar = new CustomAvatar();
+        save.setListener();
+        Imp.setListener();
+        Imp.setCancelListener(customAvatar);
         buttonObject.GetComponent<Button>().onClick.AddListener(() => Load.ClearOld());
     }
 
     void ImportModel(GameObject model)
     {
-        // Importez le modèle dans la scène
+        // Importez le modï¿½le dans la scï¿½ne
         print("BOOM");
-        
-        if (Imp == null)
-        {
-            Imp = new Load();
-        }
+
+
         print("x1");
         if (model != null) { }
         Imp.Display(model.name);
+        customAvatar.addAccessoryPath(model.name);
+        foreach (var item in customAvatar.accessoriesPathList)
+        {
+            print(item);
+        }
         print("x2");
         //Instantiate(model, Vector3.zero, Quaternion.identity);
+    }
+
+
+    void LoadTriggerBt()
+    {
+
     }
 
     void LoadPannel()

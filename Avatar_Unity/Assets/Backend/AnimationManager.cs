@@ -17,7 +17,7 @@ public class AnimationManager : MonoBehaviour
     void LoadAnimations()
     {
         // Récupère la liste des fichiers .anim dans le dossier spécifié
-        string[] animationFiles = Directory.GetFiles(Application.dataPath + "/" + animationsFolderPath, "*.anim");
+        string[] animationFiles = Directory.GetFiles(Application.dataPath + "/Resources/" + animationsFolderPath, "*.anim");
 
         // Parcourt tous les fichiers .anim trouvés
         foreach (string file in animationFiles)
